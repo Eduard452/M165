@@ -29,8 +29,28 @@ write_files:
           user: "admin",
           pwd: "TBZ12.EM",
           roles: [
-            { role: "userAdminAnyDatabase", db: "admin" },
+            roles: [{ role: "readWrite", db: "themaDB" }]
             { role: "readWriteAnyDatabase", db: "admin" }
+          ]
+        }
+      );
+      use themaDB;
+      db.createUser(
+        {
+          user: "leser",
+          pwd: "passwort123",
+          roles: [
+            roles: [{ role: "read", db: "themaDB" }]
+          ]
+        }
+      );
+      use admin;
+      db.createUser(
+        {
+          user: "autor",
+          pwd: "passwort12",
+          roles: [
+            roles: [{ role: "readWrite", db: "themaDB" }]
           ]
         }
       );
